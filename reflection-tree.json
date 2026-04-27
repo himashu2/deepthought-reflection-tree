@@ -1,0 +1,663 @@
+{
+  "meta": {
+    "name": "DeepThought Daily Reflection Tree",
+    "version": "1.0",
+    "axes": ["Locus", "Orientation", "Radius"],
+    "signals": ["axis1:internal", "axis1:external", "axis2:contribution", "axis2:entitlement", "axis3:self", "axis3:others"],
+    "tone": "reflective, non-judgmental, psychologically grounded"
+  },
+
+  "nodes": {
+
+    "START": {
+      "id": "START",
+      "type": "start",
+      "label": "End of Day Reflection",
+      "message": "Hey. Today happened. Before you close the laptop — let's spend 3 minutes making sense of it. No right answers here.",
+      "next": "Q1_LOCUS_ENERGY"
+    },
+
+    "Q1_LOCUS_ENERGY": {
+      "id": "Q1_LOCUS_ENERGY",
+      "type": "question",
+      "axis": "Locus",
+      "label": "Where did your energy go today?",
+      "message": "When you think back on today — where did most of your mental energy actually go?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dealing with things that kept getting in my way",
+          "signal": "axis1:external",
+          "psychology": "External attribution — obstacles are 'out there'"
+        },
+        {
+          "id": "B",
+          "text": "Figuring out how to move something forward despite resistance",
+          "signal": "axis1:internal",
+          "psychology": "Internal locus — agency within constraints"
+        },
+        {
+          "id": "C",
+          "text": "Waiting for clarity or direction that didn't come",
+          "signal": "axis1:external",
+          "psychology": "Passive external — awaiting external permission"
+        },
+        {
+          "id": "D",
+          "text": "Choosing what to focus on and why",
+          "signal": "axis1:internal",
+          "psychology": "Proactive internal — deliberate prioritization"
+        }
+      ],
+      "next": "D1_LOCUS_ENERGY"
+    },
+
+    "D1_LOCUS_ENERGY": {
+      "id": "D1_LOCUS_ENERGY",
+      "type": "decision",
+      "label": "Route based on Locus signal from Q1",
+      "routing": {
+        "axis1:external": "Q2_LOCUS_CREDIT",
+        "axis1:internal": "Q2_LOCUS_CREDIT"
+      },
+      "next": "Q2_LOCUS_CREDIT"
+    },
+
+    "Q2_LOCUS_CREDIT": {
+      "id": "Q2_LOCUS_CREDIT",
+      "type": "question",
+      "axis": "Locus",
+      "label": "When something went sideways today...",
+      "message": "Think of one thing that didn't go as planned today. What's your honest first read on it?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Someone or something caused it — I could see it coming",
+          "signal": "axis1:external",
+          "psychology": "Blame attribution — causality placed on environment"
+        },
+        {
+          "id": "B",
+          "text": "I probably could have handled a part of it differently",
+          "signal": "axis1:internal",
+          "psychology": "Ownership — acknowledges personal agency"
+        },
+        {
+          "id": "C",
+          "text": "It was bad luck or bad timing — not really about anyone",
+          "signal": "axis1:external",
+          "psychology": "Situational attribution — diffuse responsibility"
+        },
+        {
+          "id": "D",
+          "text": "I made a call that made sense then, but I'd refine it now",
+          "signal": "axis1:internal",
+          "psychology": "Growth attribution — learning orientation"
+        }
+      ],
+      "next": "D2_LOCUS_CREDIT"
+    },
+
+    "D2_LOCUS_CREDIT": {
+      "id": "D2_LOCUS_CREDIT",
+      "type": "decision",
+      "label": "Accumulate Locus signal — route to final Locus question",
+      "routing": {
+        "2x_external": "Q3_LOCUS_SCENARIO_VICTIM",
+        "2x_internal": "Q3_LOCUS_SCENARIO_VICTOR",
+        "mixed": "Q3_LOCUS_SCENARIO_VICTOR"
+      },
+      "next": "Q3_LOCUS_SCENARIO"
+    },
+
+    "Q3_LOCUS_SCENARIO_VICTIM": {
+      "id": "Q3_LOCUS_SCENARIO_VICTIM",
+      "type": "question",
+      "axis": "Locus",
+      "scenario": "real_life_1",
+      "label": "The meeting that went nowhere",
+      "message": "A meeting ran long and blocked your afternoon. You left frustrated, behind on work. What do you tell yourself tonight?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The organizer wasted everyone's time — it shouldn't have happened",
+          "signal": "axis1:external",
+          "psychology": "Externalizing — assigns full responsibility to others"
+        },
+        {
+          "id": "B",
+          "text": "I could have flagged early that the meeting was going off-track",
+          "signal": "axis1:internal",
+          "psychology": "Internal agency — recognizes influence within system"
+        },
+        {
+          "id": "C",
+          "text": "These things happen in teams — I'll recover tomorrow",
+          "signal": "axis1:internal",
+          "psychology": "Resilience + acceptance — constructive reframe"
+        },
+        {
+          "id": "D",
+          "text": "I should have blocked that time — I can protect it better",
+          "signal": "axis1:internal",
+          "psychology": "Proactive ownership — systemic self-regulation"
+        }
+      ],
+      "next": "D3_LOCUS_FINAL"
+    },
+
+    "Q3_LOCUS_SCENARIO_VICTOR": {
+      "id": "Q3_LOCUS_SCENARIO_VICTOR",
+      "type": "question",
+      "axis": "Locus",
+      "scenario": "real_life_1",
+      "label": "The moment you had a choice",
+      "message": "Think of a moment today where the situation was messy but you had a real choice in how to respond. What did you do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "I waited to see what others would do first",
+          "signal": "axis1:external",
+          "psychology": "Deferred agency — social proof dependency"
+        },
+        {
+          "id": "B",
+          "text": "I made a call and stood by it, even without full info",
+          "signal": "axis1:internal",
+          "psychology": "Strong internal — decisive under uncertainty"
+        },
+        {
+          "id": "C",
+          "text": "I tried something, watched how it landed, and adjusted",
+          "signal": "axis1:internal",
+          "psychology": "Adaptive internal — iterative ownership"
+        },
+        {
+          "id": "D",
+          "text": "I flagged the ambiguity and asked someone else to decide",
+          "signal": "axis1:external",
+          "psychology": "Partial external — upward delegation of agency"
+        }
+      ],
+      "next": "D3_LOCUS_FINAL"
+    },
+
+    "D3_LOCUS_FINAL": {
+      "id": "D3_LOCUS_FINAL",
+      "type": "decision",
+      "label": "Final Locus classification — route to appropriate reflection",
+      "routing": {
+        "dominant_external": "REFLECT_LOCUS_EXTERNAL",
+        "dominant_internal": "REFLECT_LOCUS_INTERNAL",
+        "mixed": "REFLECT_LOCUS_MIXED"
+      },
+      "next": "REFLECT_LOCUS"
+    },
+
+    "REFLECT_LOCUS_EXTERNAL": {
+      "id": "REFLECT_LOCUS_EXTERNAL",
+      "type": "reflection",
+      "axis": "Locus",
+      "signal": "axis1:external",
+      "label": "Reflection: External Locus",
+      "message": "It sounds like today felt a lot like things were happening *to* you. That's a real feeling — and sometimes it's accurate. But here's a small thing worth sitting with: even in the moments where you had no control over what happened, was there a moment — even tiny — where you chose how to respond? Not asking you to rewrite the day. Just notice if that moment existed.",
+      "next": "BRIDGE_AXIS1_TO_AXIS2"
+    },
+
+    "REFLECT_LOCUS_INTERNAL": {
+      "id": "REFLECT_LOCUS_INTERNAL",
+      "type": "reflection",
+      "axis": "Locus",
+      "signal": "axis1:internal",
+      "label": "Reflection: Internal Locus",
+      "message": "You seem to have held the reins pretty firmly today — owning what happened, making calls, not waiting for rescue. One thing worth checking: did you give yourself credit for that? Or did it just feel like 'what you were supposed to do'? The people who stay grounded long-term are the ones who notice when they showed up.",
+      "next": "BRIDGE_AXIS1_TO_AXIS2"
+    },
+
+    "REFLECT_LOCUS_MIXED": {
+      "id": "REFLECT_LOCUS_MIXED",
+      "type": "reflection",
+      "axis": "Locus",
+      "signal": "axis1:mixed",
+      "label": "Reflection: Mixed Locus",
+      "message": "Interesting — today seems like it had both. Moments you owned, moments that felt out of reach. That's actually more honest than most people admit. The question isn't whether that split happened. It's which one you want to feed going forward.",
+      "next": "BRIDGE_AXIS1_TO_AXIS2"
+    },
+
+    "BRIDGE_AXIS1_TO_AXIS2": {
+      "id": "BRIDGE_AXIS1_TO_AXIS2",
+      "type": "bridge",
+      "label": "Transition: Locus → Orientation",
+      "message": "You just thought about *where* your agency lived today. Now let's look at *what* you were aiming at — were you focused on what you deserved, or what you could give?",
+      "next": "Q4_ORIENT_EXPECTATION"
+    },
+
+    "Q4_ORIENT_EXPECTATION": {
+      "id": "Q4_ORIENT_EXPECTATION",
+      "type": "question",
+      "axis": "Orientation",
+      "label": "What were you tracking most today?",
+      "message": "As the day unfolded, what were you most mentally tracking?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Whether I was getting the recognition or support I needed",
+          "signal": "axis2:entitlement",
+          "psychology": "Entitlement orientation — expectation of receipt"
+        },
+        {
+          "id": "B",
+          "text": "Whether the work I was doing was actually useful to someone",
+          "signal": "axis2:contribution",
+          "psychology": "Contribution orientation — impact awareness"
+        },
+        {
+          "id": "C",
+          "text": "Whether I was being given fair opportunities compared to others",
+          "signal": "axis2:entitlement",
+          "psychology": "Comparative entitlement — fairness vigilance"
+        },
+        {
+          "id": "D",
+          "text": "Whether I was working on what mattered most right now",
+          "signal": "axis2:contribution",
+          "psychology": "Value-alignment — contribution prioritization"
+        }
+      ],
+      "next": "D4_ORIENT_EXPECT"
+    },
+
+    "D4_ORIENT_EXPECT": {
+      "id": "D4_ORIENT_EXPECT",
+      "type": "decision",
+      "label": "Route based on Orientation signal from Q4",
+      "routing": {
+        "axis2:entitlement": "Q5_ORIENT_COLLAB",
+        "axis2:contribution": "Q5_ORIENT_COLLAB"
+      },
+      "next": "Q5_ORIENT_COLLAB"
+    },
+
+    "Q5_ORIENT_COLLAB": {
+      "id": "Q5_ORIENT_COLLAB",
+      "type": "question",
+      "axis": "Orientation",
+      "scenario": "real_life_2",
+      "label": "When a colleague needed something from you...",
+      "message": "Imagine — or recall — a colleague asked for your input today on something that wasn't really 'your job.' What was your internal reaction?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mild frustration — I'm already stretched, this isn't my problem",
+          "signal": "axis2:entitlement",
+          "psychology": "Scarcity + boundary as entitlement — zero-sum framing"
+        },
+        {
+          "id": "B",
+          "text": "Genuine interest — I like knowing what's happening across the team",
+          "signal": "axis2:contribution",
+          "psychology": "Systemic interest — contributing from abundance"
+        },
+        {
+          "id": "C",
+          "text": "Calculation — will this get noticed, does it benefit me?",
+          "signal": "axis2:entitlement",
+          "psychology": "Transactional entitlement — help contingent on return"
+        },
+        {
+          "id": "D",
+          "text": "Quick check on capacity, then engagement — if I can, I will",
+          "signal": "axis2:contribution",
+          "psychology": "Bounded contribution — generous but sustainable"
+        }
+      ],
+      "next": "D5_ORIENT_COLLAB"
+    },
+
+    "D5_ORIENT_COLLAB": {
+      "id": "D5_ORIENT_COLLAB",
+      "type": "decision",
+      "label": "Accumulate Orientation signal",
+      "routing": {
+        "2x_entitlement": "Q6_ORIENT_VALUE",
+        "2x_contribution": "Q6_ORIENT_VALUE",
+        "mixed": "Q6_ORIENT_VALUE"
+      },
+      "next": "Q6_ORIENT_VALUE"
+    },
+
+    "Q6_ORIENT_VALUE": {
+      "id": "Q6_ORIENT_VALUE",
+      "type": "question",
+      "axis": "Orientation",
+      "label": "End of day honest check",
+      "message": "If your team had to describe today's version of you — not the ideal you, today's actual you — what would ring most true?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They'd say I was frustrated and hard to reach",
+          "signal": "axis2:entitlement",
+          "psychology": "Withdrawal signal — entitlement expressed as unavailability"
+        },
+        {
+          "id": "B",
+          "text": "They'd say I pushed things forward and made decisions",
+          "signal": "axis2:contribution",
+          "psychology": "Active contribution — momentum creation"
+        },
+        {
+          "id": "C",
+          "text": "They'd say I asked for a lot but didn't give much back",
+          "signal": "axis2:entitlement",
+          "psychology": "Extractive behavior — self-aware entitlement"
+        },
+        {
+          "id": "D",
+          "text": "They'd say I solved one real problem for someone",
+          "signal": "axis2:contribution",
+          "psychology": "Concrete contribution — impact specificity"
+        }
+      ],
+      "next": "D6_ORIENT_FINAL"
+    },
+
+    "D6_ORIENT_FINAL": {
+      "id": "D6_ORIENT_FINAL",
+      "type": "decision",
+      "label": "Final Orientation classification",
+      "routing": {
+        "dominant_entitlement": "REFLECT_ORIENT_ENTITLEMENT",
+        "dominant_contribution": "REFLECT_ORIENT_CONTRIBUTION",
+        "mixed": "REFLECT_ORIENT_MIXED"
+      },
+      "next": "REFLECT_ORIENT"
+    },
+
+    "REFLECT_ORIENT_ENTITLEMENT": {
+      "id": "REFLECT_ORIENT_ENTITLEMENT",
+      "type": "reflection",
+      "axis": "Orientation",
+      "signal": "axis2:entitlement",
+      "label": "Reflection: Entitlement Orientation",
+      "message": "There's a version of today where you were keeping score — tracking what came in vs. what went out. That's not wrong, it's human. But here's what's worth noticing: the people you probably trust most at work aren't the ones thinking about what they deserve. They're the ones where you can feel they're genuinely trying to make something work. Was there a moment today where you felt that way — even briefly?",
+      "next": "BRIDGE_AXIS2_TO_AXIS3"
+    },
+
+    "REFLECT_ORIENT_CONTRIBUTION": {
+      "id": "REFLECT_ORIENT_CONTRIBUTION",
+      "type": "reflection",
+      "axis": "Orientation",
+      "signal": "axis2:contribution",
+      "label": "Reflection: Contribution Orientation",
+      "message": "Sounds like today, you were mostly trying to move things forward — for the work, for others. That's a real thing and it's worth naming. One small check though: were you contributing *from* energy or *despite* empty? Sustainable contribution has a floor. Did you protect yours today?",
+      "next": "BRIDGE_AXIS2_TO_AXIS3"
+    },
+
+    "REFLECT_ORIENT_MIXED": {
+      "id": "REFLECT_ORIENT_MIXED",
+      "type": "reflection",
+      "axis": "Orientation",
+      "signal": "axis2:mixed",
+      "label": "Reflection: Mixed Orientation",
+      "message": "Today seems like it pulled you in both directions — moments of genuine giving, and moments of tallying up. Both are real. The question that might be worth sleeping on: which orientation left you feeling better at the end of the day?",
+      "next": "BRIDGE_AXIS2_TO_AXIS3"
+    },
+
+    "BRIDGE_AXIS2_TO_AXIS3": {
+      "id": "BRIDGE_AXIS2_TO_AXIS3",
+      "type": "bridge",
+      "label": "Transition: Orientation → Radius",
+      "message": "You looked at what drove you. Now let's zoom out one more ring — were you thinking mostly about yourself today, or were others in your frame?",
+      "next": "Q7_RADIUS_AWARENESS"
+    },
+
+    "Q7_RADIUS_AWARENESS": {
+      "id": "Q7_RADIUS_AWARENESS",
+      "type": "question",
+      "axis": "Radius",
+      "label": "Who was in your mind today?",
+      "message": "As decisions got made today — big and small — whose perspective was actually in the room with you mentally?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mostly mine — I was focused on getting my work done",
+          "signal": "axis3:self",
+          "psychology": "Self-radius — individual task focus"
+        },
+        {
+          "id": "B",
+          "text": "My immediate team — I thought about how my work affects them",
+          "signal": "axis3:others",
+          "psychology": "Proximal others — team-radius awareness"
+        },
+        {
+          "id": "C",
+          "text": "Honestly — just the people I needed something from",
+          "signal": "axis3:self",
+          "psychology": "Instrumental others — others as means, not ends"
+        },
+        {
+          "id": "D",
+          "text": "The people downstream — users, stakeholders, whoever this lands on",
+          "signal": "axis3:others",
+          "psychology": "Distal others — systems-level empathy"
+        }
+      ],
+      "next": "D7_RADIUS_AWARE"
+    },
+
+    "D7_RADIUS_AWARE": {
+      "id": "D7_RADIUS_AWARE",
+      "type": "decision",
+      "label": "Route based on Radius signal from Q7",
+      "routing": {
+        "axis3:self": "Q8_RADIUS_IMPACT",
+        "axis3:others": "Q8_RADIUS_IMPACT"
+      },
+      "next": "Q8_RADIUS_IMPACT"
+    },
+
+    "Q8_RADIUS_IMPACT": {
+      "id": "Q8_RADIUS_IMPACT",
+      "type": "question",
+      "axis": "Radius",
+      "label": "Did you check in on anyone today?",
+      "message": "Not on Slack tasks — but genuinely check in. Did you notice how someone was doing today?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No — I was too heads-down to look up",
+          "signal": "axis3:self",
+          "psychology": "Self-absorption in workflow — tunnel vision"
+        },
+        {
+          "id": "B",
+          "text": "Yes — I noticed someone struggling and said something",
+          "signal": "axis3:others",
+          "psychology": "Active other-awareness — empathic intervention"
+        },
+        {
+          "id": "C",
+          "text": "I noticed but didn't act on it — felt like not my place",
+          "signal": "axis3:self",
+          "psychology": "Bystander inhibition — awareness without radius extension"
+        },
+        {
+          "id": "D",
+          "text": "Someone checked on me — I hadn't thought to return it",
+          "signal": "axis3:self",
+          "psychology": "Reciprocity gap — receiving without extending"
+        }
+      ],
+      "next": "D8_RADIUS_IMPACT"
+    },
+
+    "D8_RADIUS_IMPACT": {
+      "id": "D8_RADIUS_IMPACT",
+      "type": "decision",
+      "label": "Accumulate Radius signal",
+      "routing": {
+        "2x_self": "Q9_RADIUS_FINAL",
+        "2x_others": "Q9_RADIUS_FINAL",
+        "mixed": "Q9_RADIUS_FINAL"
+      },
+      "next": "Q9_RADIUS_FINAL"
+    },
+
+    "Q9_RADIUS_FINAL": {
+      "id": "Q9_RADIUS_FINAL",
+      "type": "question",
+      "axis": "Radius",
+      "label": "Tomorrow — who are you thinking about?",
+      "message": "When you think about tomorrow's work, who enters your mind first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "My own task list and what I need to finish",
+          "signal": "axis3:self",
+          "psychology": "Self-radius persistence — egocentric planning horizon"
+        },
+        {
+          "id": "B",
+          "text": "A specific person I want to help move forward",
+          "signal": "axis3:others",
+          "psychology": "Named other — concrete relational radius"
+        },
+        {
+          "id": "C",
+          "text": "The outcome we're all trying to get to together",
+          "signal": "axis3:others",
+          "psychology": "Collective orientation — shared purpose radius"
+        },
+        {
+          "id": "D",
+          "text": "What I didn't get done and need to protect tomorrow",
+          "signal": "axis3:self",
+          "psychology": "Deficit self-focus — scarcity planning"
+        }
+      ],
+      "next": "D9_RADIUS_FINAL"
+    },
+
+    "D9_RADIUS_FINAL": {
+      "id": "D9_RADIUS_FINAL",
+      "type": "decision",
+      "label": "Final Radius classification + build summary signals",
+      "routing": {
+        "dominant_self": "REFLECT_RADIUS_SELF",
+        "dominant_others": "REFLECT_RADIUS_OTHERS",
+        "mixed": "REFLECT_RADIUS_MIXED"
+      },
+      "next": "REFLECT_RADIUS"
+    },
+
+    "REFLECT_RADIUS_SELF": {
+      "id": "REFLECT_RADIUS_SELF",
+      "type": "reflection",
+      "axis": "Radius",
+      "signal": "axis3:self",
+      "label": "Reflection: Self Radius",
+      "message": "Today seems like you were mostly in your own lane — not in a bad way, but the radius was tight. That's sometimes exactly what a day needs. But here's a thread worth pulling: when was the last time someone at work left an interaction with you feeling a little clearer, a little lighter? Not your job to manage their emotions — just noticing where your presence lands.",
+      "next": "SUMMARY_NODE"
+    },
+
+    "REFLECT_RADIUS_OTHERS": {
+      "id": "REFLECT_RADIUS_OTHERS",
+      "type": "reflection",
+      "axis": "Radius",
+      "signal": "axis3:others",
+      "label": "Reflection: Others Radius",
+      "message": "You seem to have kept other people genuinely in view today — which is rarer than it sounds. Expanding your radius takes something. The check worth doing: were you doing it from real interest, or from a sense that you *should* be thinking about others? Both produce the same behavior, but they feel very different from the inside.",
+      "next": "SUMMARY_NODE"
+    },
+
+    "REFLECT_RADIUS_MIXED": {
+      "id": "REFLECT_RADIUS_MIXED",
+      "type": "reflection",
+      "axis": "Radius",
+      "signal": "axis3:mixed",
+      "label": "Reflection: Mixed Radius",
+      "message": "Your radius today seemed to shift depending on the situation — which is actually pretty sophisticated. The people who grow fastest aren't the ones who are always other-focused. They're the ones who notice when their radius is contracting and ask themselves why.",
+      "next": "SUMMARY_NODE"
+    },
+
+    "SUMMARY_NODE": {
+      "id": "SUMMARY_NODE",
+      "type": "summary",
+      "label": "Full Day Reflection Summary",
+      "message": "Here's what today looked like through this lens. You said '{Q1.answer}' when asked about your energy. When something went sideways, your instinct was '{Q2.answer}'. And tomorrow, you're most thinking about '{Q9.answer}'.\n\nAcross three questions — where you anchor control (Locus), what you were optimizing for (Orientation), and who you kept in frame (Radius) — your day looked like this:\n\nLocus: {axis1_summary}\nOrientation: {axis2_summary}\nRadius: {axis3_summary}\n\nNo score. No grade. Just a clearer picture than you had five minutes ago.",
+      "signal_interpolation": {
+        "axis1_summary": {
+          "dominant_internal": "You mostly held agency — owned what happened.",
+          "dominant_external": "Things felt like they were happening to you more than through you.",
+          "mixed": "A split day — owned some, externalized some."
+        },
+        "axis2_summary": {
+          "dominant_contribution": "You were tracking impact over entitlement.",
+          "dominant_entitlement": "You were tracking fairness and return more than contribution.",
+          "mixed": "Shifted between giving and tallying."
+        },
+        "axis3_summary": {
+          "dominant_others": "Others were genuinely in your frame.",
+          "dominant_self": "You were mostly in your own lane today.",
+          "mixed": "Your radius expanded and contracted situationally."
+        }
+      },
+      "next": "END"
+    },
+
+    "END": {
+      "id": "END",
+      "type": "end",
+      "label": "Close",
+      "message": "That's it. Close the laptop. You showed up today. That counts.\n\n— DeepThought Reflection System"
+    }
+  },
+
+  "simulations": {
+    "user_1_victim_entitled_self": {
+      "profile": "Victim mindset | Entitled | Self-focused",
+      "path": [
+        { "node": "START", "action": "enters" },
+        { "node": "Q1_LOCUS_ENERGY", "selected": "A", "text": "Dealing with things that kept getting in my way", "signal": "axis1:external" },
+        { "node": "Q2_LOCUS_CREDIT", "selected": "A", "text": "Someone or something caused it — I could see it coming", "signal": "axis1:external" },
+        { "node": "Q3_LOCUS_SCENARIO_VICTIM", "selected": "A", "text": "The organizer wasted everyone's time — it shouldn't have happened", "signal": "axis1:external" },
+        { "node": "REFLECT_LOCUS_EXTERNAL", "type": "reflection" },
+        { "node": "BRIDGE_AXIS1_TO_AXIS2", "type": "bridge" },
+        { "node": "Q4_ORIENT_EXPECTATION", "selected": "A", "text": "Whether I was getting the recognition or support I needed", "signal": "axis2:entitlement" },
+        { "node": "Q5_ORIENT_COLLAB", "selected": "A", "text": "Mild frustration — I'm already stretched, this isn't my problem", "signal": "axis2:entitlement" },
+        { "node": "Q6_ORIENT_VALUE", "selected": "C", "text": "They'd say I asked for a lot but didn't give much back", "signal": "axis2:entitlement" },
+        { "node": "REFLECT_ORIENT_ENTITLEMENT", "type": "reflection" },
+        { "node": "BRIDGE_AXIS2_TO_AXIS3", "type": "bridge" },
+        { "node": "Q7_RADIUS_AWARENESS", "selected": "A", "text": "Mostly mine — I was focused on getting my work done", "signal": "axis3:self" },
+        { "node": "Q8_RADIUS_IMPACT", "selected": "A", "text": "No — I was too heads-down to look up", "signal": "axis3:self" },
+        { "node": "Q9_RADIUS_FINAL", "selected": "A", "text": "My own task list and what I need to finish", "signal": "axis3:self" },
+        { "node": "REFLECT_RADIUS_SELF", "type": "reflection" },
+        { "node": "SUMMARY_NODE", "summary": { "axis1": "dominant_external", "axis2": "dominant_entitlement", "axis3": "dominant_self" } },
+        { "node": "END" }
+      ]
+    },
+    "user_2_victor_contributor_others": {
+      "profile": "Ownership | Contribution | Thinks about others",
+      "path": [
+        { "node": "START", "action": "enters" },
+        { "node": "Q1_LOCUS_ENERGY", "selected": "B", "text": "Figuring out how to move something forward despite resistance", "signal": "axis1:internal" },
+        { "node": "Q2_LOCUS_CREDIT", "selected": "D", "text": "I made a call that made sense then, but I'd refine it now", "signal": "axis1:internal" },
+        { "node": "Q3_LOCUS_SCENARIO_VICTOR", "selected": "C", "text": "I tried something, watched how it landed, and adjusted", "signal": "axis1:internal" },
+        { "node": "REFLECT_LOCUS_INTERNAL", "type": "reflection" },
+        { "node": "BRIDGE_AXIS1_TO_AXIS2", "type": "bridge" },
+        { "node": "Q4_ORIENT_EXPECTATION", "selected": "B", "text": "Whether the work I was doing was actually useful to someone", "signal": "axis2:contribution" },
+        { "node": "Q5_ORIENT_COLLAB", "selected": "D", "text": "Quick check on capacity, then engagement — if I can, I will", "signal": "axis2:contribution" },
+        { "node": "Q6_ORIENT_VALUE", "selected": "D", "text": "They'd say I solved one real problem for someone", "signal": "axis2:contribution" },
+        { "node": "REFLECT_ORIENT_CONTRIBUTION", "type": "reflection" },
+        { "node": "BRIDGE_AXIS2_TO_AXIS3", "type": "bridge" },
+        { "node": "Q7_RADIUS_AWARENESS", "selected": "D", "text": "The people downstream — users, stakeholders, whoever this lands on", "signal": "axis3:others" },
+        { "node": "Q8_RADIUS_IMPACT", "selected": "B", "text": "Yes — I noticed someone struggling and said something", "signal": "axis3:others" },
+        { "node": "Q9_RADIUS_FINAL", "selected": "C", "text": "The outcome we're all trying to get to together", "signal": "axis3:others" },
+        { "node": "REFLECT_RADIUS_OTHERS", "type": "reflection" },
+        { "node": "SUMMARY_NODE", "summary": { "axis1": "dominant_internal", "axis2": "dominant_contribution", "axis3": "dominant_others" } },
+        { "node": "END" }
+      ]
+    }
+  }
+}
