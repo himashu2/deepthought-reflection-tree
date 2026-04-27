@@ -1,0 +1,29 @@
+flowchart TD
+
+    A[Start] --> B[Locus Axis]
+    B --> C[Orientation Axis]
+    C --> D[Radius Axis]
+    D --> E[Summary]
+    E --> F[End]
+
+    subgraph Locus
+        B1[Energy Source]
+        B2[Blame / Ownership]
+        B3[Scenario Response]
+    end
+
+    subgraph Orientation
+        C1[Expectation Tracking]
+        C2[Collaboration Reaction]
+        C3[Team Perception]
+    end
+
+    subgraph Radius
+        D1[Awareness Scope]
+        D2[Empathy Action]
+        D3[Future Focus]
+    end
+
+    B --> B1 --> B2 --> B3 --> C
+    C --> C1 --> C2 --> C3 --> D
+    D --> D1 --> D2 --> D3 --> E
